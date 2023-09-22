@@ -25,7 +25,7 @@ def generate_image(prompt):
     response = openai.Image.create(
         prompt=prompt,
         n=1,
-        size="512x512"
+        size="1024x1024"
     )
 
     image_url = response['data'][0]['url']
@@ -38,6 +38,8 @@ def generate_text(prompt):
 
     response = completion.choices[0].message.content
     return response
+
+
 while True:
     cmd = input('처리할 명령이 무엇인가요?(그림/대화): ')
 
@@ -48,6 +50,7 @@ while True:
         response = generate_text(prompt)
 
         print(f'A: {response}')
+
     else:
         prompt = input('원하는 그림: ')
         prompt = prompt.rstrip('\n')
@@ -57,4 +60,4 @@ while True:
         # prompt = translator.translate(prompt, 'ko', 'en')
         #
         # print(prompt)
-        print(generate_image(str(prompt.text)))
+        print(generate_image(str(prompt)))
