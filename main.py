@@ -1,11 +1,11 @@
 '''
 
-DrawinGPT 0.1.0 Alpha
+DrawinGPT 0.1.1 Alpha
 
 This is PyKakao and OpenAI GPT-3.5-turbo project
 
 by. Kimmiyeouk
-Commited in 2023/09/22
+Commited in 2023/09/25
 All rights reserved.
 
 Github: https://github.com/kimmiyeouk
@@ -18,27 +18,10 @@ import openai
 import pypapago
 
 from PyKakao import Karlo
+from DrawinGPT_Modules.generate_image import Generate_image
+from DrawinGPT_Modules.generate_text import Generate_text
 
 openai.api_key = '' #Please enter OpenAI API key here.
-
-def generate_image(prompt):
-    response = openai.Image.create(
-        prompt=prompt,
-        n=1,
-        size="1024x1024"
-    )
-
-    image_url = response['data'][0]['url']
-    return image_url
-
-def generate_text(prompt):
-    completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[
-        {"role": "system", "content": "hello. your name is DrawinGPT. And you have to say honorific to user."},
-        {"role": "user", "content": prompt}])
-
-    response = completion.choices[0].message.content
-    return response
-
 
 while True:
     cmd = input('처리할 명령이 무엇인가요?(그림/대화): ')
@@ -47,7 +30,7 @@ while True:
         prompt = input('Q: ')
 
         #gpt-3.5-turbo 엔진으로 언어 모델 구현
-        response = generate_text(prompt)
+        response = Generate_text(prompt, openai.api_key)
 
         print(f'A: {response}')
 
@@ -60,4 +43,4 @@ while True:
         # prompt = translator.translate(prompt, 'ko', 'en')
         #
         # print(prompt)
-        print(generate_image(str(prompt)))
+        print(Generate_image(str(prompt, openai.api_key)))
