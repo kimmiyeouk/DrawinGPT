@@ -21,7 +21,7 @@ from PyKakao import Karlo
 from DrawinGPT_Modules.generate_image import Generate_image
 from DrawinGPT_Modules.generate_text import Generate_text
 
-openai.api_key = '' #Please enter OpenAI API key here.
+openai.api_key = 'Please enter OpenAI API key here.'
 
 while True:
     cmd = input('처리할 명령이 무엇인가요?(그림/대화): ')
