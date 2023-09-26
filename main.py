@@ -20,8 +20,7 @@ import pypapago
 from PyKakao import Karlo
 from DrawinGPT_Modules.generate_image import Generate_image
 from DrawinGPT_Modules.generate_text import Generate_text
-
-openai.api_key = 'Please enter OpenAI API key here.'
+from DrawinGPT_Modules.import_apikey import Import_APIkey
 
 while True:
     cmd = input('처리할 명령이 무엇인가요?(그림/대화): ')
@@ -30,7 +29,7 @@ while True:
         prompt = input('Q: ')
 
         #gpt-3.5-turbo 엔진으로 언어 모델 구현
-        response = Generate_text(prompt, openai.api_key)
+        response = Generate_text(prompt)
 
         print(f'A: {response}')
 
@@ -43,4 +42,4 @@ while True:
         # prompt = translator.translate(prompt, 'ko', 'en')
         #
         # print(prompt)
-        print(Generate_image(str(prompt, openai.api_key)))
+        print(Generate_image(str(prompt)))
